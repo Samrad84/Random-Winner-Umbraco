@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using MyWebsite.User;
+
+@{
+
+  var data = await RandomUser.GetResultsAsync();
+}
+
+
+<div>
+
+  @if (data == null)
+  {
+    <div />
+
+  }
+  else
+  {
+    @foreach (var result in data.results)
+    {
+      <div>
+        <img src="@result.picture.large">
+        
+        <h4>@result.name.first @result.name.last </h4>
+         <p>@result.location.city @result.location.country </p>
+        <p>@result.gender</p>
+        <p>@result.email</p>
+
+      </div>
+
+    }
+
+
+  }
+
